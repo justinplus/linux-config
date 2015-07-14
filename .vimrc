@@ -62,7 +62,7 @@ Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'plasticboy/vim-markdown'
-" Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
 " Plugin 'a.vim'
 " Plugin 'drawit'
 " Plugin 'majutsushi/tagbar'
@@ -71,7 +71,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'Shougo/neocomplete.vim'
-" Plugin 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 " Plugin 'tpope/vim-fugitive'
 " Plugin 'rizzatti/dash.vim'
 " Plugin 'derekwyatt/vim-scala'
@@ -157,15 +157,15 @@ let g:AutoPairsMapBS=0
 " ************************************************ 
 " Snipmate section
 " ************************************************ 
-let g:snips_author='lythesia'
+let g:snips_author='Justin Jia'
 
 " ================================================ 
 " View section
 " ================================================ 
 " colo schema
-if $TERM == 'xterm-256color' || $TERM == 'screen-256color'
+if $TERM == 'xterm' || $TERM == 'xterm-256color' || $TERM == 'screen-256color'
   set t_Co=256
-  colo desertEx_term
+  colo desertEx_jj
 else
   colo elflord
 endif
