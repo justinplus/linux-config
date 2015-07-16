@@ -340,6 +340,10 @@ silent map <F6> :call Run()<cr>
 " draw
 silent map <F7> :call DrawToggle()<cr>
 
+" clip & paste
+vnoremap <C-c> "+y
+vnoremap <C-v> "+p
+
 " ================================================ 
 " Initialize utilities
 " ================================================ 
