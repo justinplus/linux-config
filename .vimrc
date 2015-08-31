@@ -268,6 +268,7 @@ au BufNewFile,BufRead, *.jade setlocal ft=jade
 au BufNewFile,BufRead, *.ejs setlocal ft=html
 au BufNewFile,BufRead, *.{asm,inc} setlocal ft=nasm
 au BufNewFile,BufRead, *.jbuilder setlocal ft=ruby
+au BufNewFile,BufRead, *.bpel setlocal ft=xml
 
 " set tab
 set tabstop=2
@@ -370,9 +371,9 @@ endfunc
 " toggle tree&buffer view
 func! LSidebarToggle()
     let b = bufnr("%")
-    "exec "NERDTreeToggle | BuffergatorToggle"
+    " exec "NERDTreeToggle | BuffergatorToggle"
     exec "NERDTreeToggle"
-    exec bufwinnr(b) . "wincmd w"
+    " exec bufwinnr(b) . "wincmd w"
 endfunc
 
 " drawit
