@@ -83,8 +83,15 @@ call vundle#end()
 filetype plugin indent on
 
 " ************************************************ 
-" Neocomplete section
+" Latex-Suite section
+" ************************************************
+set shellslash
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+
 " ************************************************ 
+" Neocomplete section
+" ************************************************
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
