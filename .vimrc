@@ -77,6 +77,7 @@ Plugin 'Lokaltog/vim-powerline'
 " Plugin 'rizzatti/dash.vim'
 " Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-haml'
+Plugin 'vim-latex/vim-latex'
 
 " reset filetype
 call vundle#end()
