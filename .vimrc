@@ -61,8 +61,9 @@ Plugin 'gmarik/vundle'
 " Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
+" Plugin 'jtratner/vim-flavored-markdown'
 " Plugin 'a.vim'
 " Plugin 'drawit'
 " Plugin 'majutsushi/tagbar'
@@ -262,7 +263,7 @@ let g:tex_fast=""
 " au BufNewFile,BufRead, *.{md,mkd} setlocal ft=mkd
 augroup markdown
   au!
-  au BufNewFile,BufRead, *.{md,mkd,markdown} setlocal ft=ghmarkdown
+  au BufNewFile,BufRead, *.{md,mkd,markdown} setlocal ft=markdown
 augroup end
 au BufNewFile,BufRead, *.jade setlocal ft=jade
 au BufNewFile,BufRead, *.ejs setlocal ft=html
@@ -290,7 +291,7 @@ set backspace=eol,start,indent
 " search hint
 set incsearch
 set hlsearch
-set ignorecase
+" set ignorecase
 set smartcase
 
 " use space to folden
@@ -343,9 +344,11 @@ func! Run()
   if &filetype == 'c' || &filetype == 'cpp'
     exec "!./%<.run"
   elseif &filetype == 'ruby'
-    exec "!ruby %<.rb"
+    exec "!ruby -I ../lib:../../lib:../../../lib  %<.rb"
   elseif &filetype == 'python'
     exec "!python3 %<"
+  elseif &filetype == 'php'
+    exec "!php %<.php"
   elseif &filetype == 'js'
     exec "!node %<"
   endif
