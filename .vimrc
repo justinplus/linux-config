@@ -57,7 +57,7 @@ filetype off
 " setup vundle
 set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 " Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
@@ -78,17 +78,20 @@ Plugin 'Lokaltog/vim-powerline'
 " Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-haml'
 Plugin 'vim-latex/vim-latex'
+" Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " reset filetype
 call vundle#end()
 filetype plugin indent on
 
 " ************************************************ 
-" Latex-Suite section
+" Vim-Latex section
 " ************************************************
 set shellslash
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
+" let g:Tex_CompileRule_dvi = 'latex -src-specials -interaction=nonstopmode -file-line-error-style $*'
+let g:Tex_DefaultTargetFormat = 'pdf'
 
 " ************************************************ 
 " Neocomplete section
@@ -175,6 +178,13 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" For LaTex-Box
+" let g:neocomplete#sources#omni#input_patterns.tex = '\\\h\w*{'
+" if !exists('g:neocomplete#force_omni_input_patterns')
+  " let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.tex = '\\\w*{'
 
 " ************************************************ 
 " EasyMotion section
@@ -278,6 +288,7 @@ au BufNewFile,BufRead, *.ejs setlocal ft=html
 au BufNewFile,BufRead, *.{asm,inc} setlocal ft=nasm
 au BufNewFile,BufRead, *.jbuilder setlocal ft=ruby
 au BufNewFile,BufRead, *.bpel setlocal ft=xml
+au BufNewFile,BufRead, *.fish setlocal ft=sh
 
 " set tab
 set tabstop=2
@@ -344,6 +355,7 @@ func! Compile()
     exec "!gcc-4.8 % -O2 -lm -fno-asm -Wall -std=c11 -o %<.run"
   elseif &filetype == 'cpp'
     exec "!g++-4.8 % -O2 -lm -fno-asm -Wall -std=c++11 -o %<.run"
+  elseif &filetype == 'tex'
   endif
 endfunc
 
