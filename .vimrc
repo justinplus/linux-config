@@ -57,7 +57,7 @@ filetype off
 " setup vundle
 set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 " Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
@@ -72,7 +72,10 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'Lokaltog/vim-powerline'
 " Plugin 'tpope/vim-fugitive'
 " Plugin 'rizzatti/dash.vim'
 " Plugin 'derekwyatt/vim-scala'
@@ -240,6 +243,13 @@ let g:AutoPairsMapBS=0
 " let g:Powerline_symbols='fancy'
 
 " ************************************************ 
+" Airline section
+" ************************************************ 
+" set fillchars+=stl:\ ,stlnc:\
+let g:airline_powerline_fonts=1
+let g:airline_theme='powerlineish'
+
+" ************************************************ 
 " Snipmate section
 " ************************************************ 
 let g:snips_author='Justin Jia'
@@ -314,7 +324,7 @@ set hlsearch
 set smartcase
 
 " use space to folden
-set foldmethod=syntax
+" set foldmethod=syntax
 set foldlevelstart=99
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<cr>
 set foldopen-=search
@@ -355,6 +365,8 @@ func! Compile()
     exec "!gcc-4.8 % -O2 -lm -fno-asm -Wall -std=c11 -o %<.run"
   elseif &filetype == 'cpp'
     exec "!g++-4.8 % -O2 -lm -fno-asm -Wall -std=c++11 -o %<.run"
+  elseif &filetype == 'java'
+    exec "!javac %"
   elseif &filetype == 'tex'
   endif
 endfunc
@@ -363,6 +375,8 @@ func! Run()
   exec "w"
   if &filetype == 'c' || &filetype == 'cpp'
     exec "!./%<.run"
+  elseif &filetype == 'java'
+    exec "!java %<"
   elseif &filetype == 'ruby'
     exec "!ruby -I ../lib:../../lib:../../../lib  %<.rb"
   elseif &filetype == 'python'
@@ -411,6 +425,17 @@ func! DrawToggle()
   endif
 endfunc
 
+" strip trailing whitespace
+function! StripTrailingWhitespace()
+  normal mZ
+  let l:chars = col("$")
+  %s/\s\+$//e
+  if (line("'Z") != line(".")) || (l:chars != col("$"))
+    echo "Trailing whitespace stripped\n"
+  endif
+  normal `Z
+endfunction
+
 " ================================================ 
 " Shortcut remaps
 " ================================================ 
@@ -438,3 +463,8 @@ vnoremap <C-v> "+p
 " Initialize utilities
 " ================================================ 
 autocmd VimEnter * call TabPos_Initialize()
+
+" ================================================ 
+" Strip trailing whitespace
+" ================================================ 
+autocmd FileType c,cpp,java,php,ruby autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
